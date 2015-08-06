@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FriendshipModelDemo</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <ul class="nav pull-right">
+    <% if user_signed_in? %>
+      <li id="fat-menu" class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Account <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Friends", user_friends_path %></li>
+          <li><%= link_to "Find Friends", users_path %></li>
+          <li><%= link_to "Friend Request", friendrequest_path %></li>
+          <li><%= link_to "Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Settings", '#' %></li>
+          <!--<li class="divider"></li>
+          <li>
+            <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+          </li>-->
+        </ul>
+      </li>
+      <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign in", new_user_session_path %></li>
+    <% end %>
+  </ul>
+
+ <p class="notice"><%= notice %></p>
+ <p class="alert"><%= alert %></p>
+<%= yield %>
+
+</body>
+</html>
